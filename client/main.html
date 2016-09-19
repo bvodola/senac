@@ -1,0 +1,685 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Senac - Pós Graduação</title>
+  <link rel="stylesheet" type="text/css" href="fonts/gotham/stylesheet.css">
+</head>
+
+<!-- **** -->
+<!-- main -->
+<!-- **** -->
+<template name="main">
+  <div id="main">
+    <header>
+      <div class="ui container">
+        <div class="ui stackable grid">
+
+          <!-- **************** -->
+          <!-- First Header Row -->
+          <!-- **************** -->
+
+          <!-- Hero Shot -->
+          <div class="row">
+            <div class="mobile-logo">
+              <img src="img/logo-senac-70-anos.gif" class="responsive" />
+            </div>
+            <div class="seven wide column hero-shot">
+              <img src="img/arte-senac-2.jpg" class="responsive">
+            </div>
+
+            <!-- Badge and Header -->
+            <div class="badge-header nine wide column">
+              <div class="badge hidden-xs">
+                <img src="img/selo-mec-2.jpg" class="responsive hidden-xs">
+              </div>
+              <h1>FAÇA PÓS-GRADUAÇÃO NO SENAC.</h1>
+              <h2>MAIS DE 100 CURSOS, PRESENCIAIS E A DISTÂNCIA, EM DIVERSAS ÁREAS DO CONHECIMENTO.</h2>
+            </div>
+          </div>
+
+          <!-- ***************** -->
+          <!-- Second Header Row -->
+          <!-- ***************** -->
+
+          <div class="row">
+            <div class="seven wide column main-logo">
+              <img src="img/logo-senac-70-anos.gif" class="responsive hidden-xs">
+            </div>
+            <div class="nine wide column middle aligned content">
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="ui container">
+        <p class="visible-xs"><b>Faça uma busca abaixo por nossos cursos.</b></p>
+        {{> Template.dynamic template=content }}
+      </div>
+    </main>
+  </div>
+</template>
+
+<!-- ******** -->
+<!-- leadForm -->
+<!-- ******** -->
+<template name="leadForm">
+  <form method="POST" class="ui form" id="leadForm" action="http://sp.senac.br/posgraduacao" target="_blank">
+    <div class="fields">
+      <div class="ten wide field">
+        <input type="email" name="email" placeholder="Digite seu email..." required />
+      </div>
+      <div class="six wide field">
+        <button type="submit" class="ui positive right labeled icon button">
+          Quero saber mais
+          <i class="right chevron icon"></i>
+        </button>
+      </div>
+    </div>
+    <div class="privacy">
+      <i class="lock icon"></i>Ao enviar, você autoriza o recebimento de informações do Senac. Seus dados <b>nunca</b> serão compartilhadas com terceiros.
+    </div>
+  </form>
+</template>
+
+<!-- ****** -->
+<!-- course -->
+<!-- ****** -->
+<template name="course">
+  <h1>{{title}}</h1>
+  <p>{{modality}}</p>
+  <p>{{category}}</p>
+  <p>{{description}}</p>
+  <p>{{units}}</p>
+  <a href="{{link}}#">+ Info</a>
+</template>
+
+<!-- ************ -->
+<!-- courseSearch -->
+<!-- ************ -->
+<template name="courseSearch">
+  
+  <div class="ui stackable grid">
+    <div class="row">
+      <div class="four wide column segment course-search-box">
+        <form class="ui segments">
+          
+          <!--
+          Modality
+          -->
+          <div class="ui segment">
+            <div class="ui top attached label">Modalidade</div>
+            
+            <div class="grouped fields">
+              <div class="field">
+                <div class="ui radio checkbox modality-radio">
+                  <input type="radio" name="modality" value="Presencial" checked="checked" />
+                  <label>Presencial</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox modality-radio">
+                  <input type="radio" name="modality" value="EAD" />
+                  <label>EAD</label>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          <!--
+          Category
+          -->
+          <div class="ui segment">
+            <div class="ui top attached label">Área</div>
+            <select name="category" id="courseCategory">
+              <option disabled="disabled" value="">Selecione...</option>
+              {{ #each category in categories }}
+                <option value="{{ category.name }}">{{ category.name }}</option>
+              {{ /each }}
+            </select>
+          </div>
+          
+          <!--
+          Unit
+          -->
+          <div class="ui segment unit-menu">
+            <div class="ui top attached label">Unidade</div>
+            
+            <div class="field choose-units-wrapper">
+              <div class="ui toggle checkbox">
+                <input type="checkbox" name="choose-units">
+                <label>Escolher Unidades</label>
+              </div>
+            </div>
+            
+            <div class="grouped fields unit-menu-fields">
+              <div class="field unit-mass-selectors">
+                <div class="ui buttons tiny">
+                  <button class="ui mini button all-units">Todas</button>
+                  <div class="or" data-text="ou"></div>
+                  <button class="ui mini button no-unit">Nenhuma</button>
+                </div>
+              </div>
+
+              <!-- Capital -->
+              <div class="unit-region-wrapper">
+                <a href="#" class="unit-region-title">Capital e Grande SP</a>
+                {{ #each unit "Capital" }}
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" name="units[]" id="{{ _id }}" value="{{ name }}" checked />
+                    <label for="{{ _id }}">{{ name }}</label>
+                  </div>
+                </div>
+                {{ /each }}
+              </div>
+
+              <div class="ret"></div>
+              <!-- Interior -->
+              <div class="unit-region-wrapper">
+                <a href="#" class="unit-region-title">Interior</a>
+                {{ #each unit "Interior" }}
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" name="units[]" id="{{ _id }}" value="{{ name }}" checked />
+                    <label for="{{ _id }}">{{ name }}</label>
+                  </div>
+                </div>
+                {{ /each }}
+              </div>
+
+              <div class="ret"></div>
+              <!-- Litoral -->
+              <div class="unit-region-wrapper">
+                <a href="#" class="unit-region-title">Litoral</a>
+                {{ #each unit "Litoral" }}
+                <div class="field">
+                  <div class="ui checkbox">
+                    <input type="checkbox" name="units[]" id="{{ _id }}" value="{{ name }}" checked />
+                    <label for="{{ _id }}">{{ name }}</label>
+                  </div>
+                </div>
+                {{ /each }}
+              </div>
+
+            </div>
+          </div>
+
+          <!--
+          Course Search Button
+          -->
+          <div class="ui segment">
+            <button type="submit" class="ui primary button course-search-button">
+              <i class="search icon"></i>
+              Buscar Cursos
+            </button>
+          </div>
+          
+        </form>
+      </div>
+      
+      <!-- *********** -->
+      <!-- Course List -->
+      <!-- *********** -->
+      <div class="twelve wide column" id="courseListWrapper">
+        {{ #if choosenCategory  }}
+        <h2>Cursos <i>{{ searchedModality }}</i> na área de <i>{{ choosenCategory }}</i></h2>
+        {{ /if }}
+
+        {{ #if hasCourses }}
+          <p>{{ courseNumber }} cursos encontrados</p>
+          {{ > courseList }}
+        {{ else }}
+          {{ #if choosenCategory  }}
+          <p>Nenhum curso encontrado para os filtros escolhidos</p>
+          {{ else}}
+              <div class="search-instructions">
+                <span class="hidden-xs"><i id="homeArrow" class="bounce left arrow fitted icon"></i>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="visible-xs"><i class="up arrow icon"></i>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                Procure um curso usando os filtros disponíveis
+                <span class="hidden-xs">ao lado</span><span class="visible-xs">acima</span>.
+                Os resultados vão aparecer aqui.
+              </div>
+              
+          {{ /if }}
+
+        {{ /if }}
+      </div>
+    </div>
+  </div>
+  
+  <!-- Custom Template Javascript -->
+  <script type="text/javascript">
+    $(".unit-menu-fields").hide();
+    $('.ui.checkbox').checkbox();
+  </script>
+  
+</template>
+
+
+<!-- ********** -->
+<!-- courseList -->
+<!-- ********** -->
+<template name="courseList">
+  <div class="course-list ui relaxed divided items">
+    {{ #each course }}
+      {{ > courseRow}}
+    {{ /each }}
+  </div>
+  
+  <!-- Course Modal -->
+  <div class="ui small modal">
+  {{ > courseModal }}
+  </div>
+</template>
+
+<!-- ********* -->
+<!-- courseRow -->
+<!-- ********* -->
+<template name="courseRow">
+  <div class="item">
+    <div class="content">
+      <p class="header course-title">{{title}}</p>
+      <div class="extra">
+        <!-- <a class="ui yellow image label">
+          <i class="university icon"></i>
+          {{category}}
+          <div class="detail">{{modality}}</div>
+        </a> -->
+        
+        {{ #each units}}
+        <div class="ui label">
+          <i class="fitted marker icon"></i>
+          <span>{{this}}</span>
+        </div>
+        {{ /each }}
+      </div>
+      <div class="meta">
+        <span><i>Descrição e Objetivos</i></span>
+      </div>
+      <div class="description">
+        <p>
+          {{{description}}}
+        </p>
+      </div>
+      
+      <div class="extra">
+        <button data-title="{{title}}" data-link="{{link}}" class="ui right floated primary button modal-button">
+          Saiba Mais
+          <i class="right chevron icon"></i>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</template>
+
+<!-- *********** -->
+<!-- courseModal -->
+<!-- *********** -->
+<template name="courseModal">
+  
+    <i class="modal-close close icon" style="float: right"></i>
+    <div class="header">
+      Mais informações sobre o curso de {{modalTitle}}
+    </div>
+    
+    <div class="content">
+      <div class="description">
+        <form method="POST" id="formInfoCurso" class="ui form" action="{{modalLink}}" target="_blank">
+          <div class="field">
+            <input type="email" name="email" placeholder="Digite seu email..." required />
+          </div>
+          <button type="submit" id="btnInfoCurso" class="ui positive right labeled icon button">
+            Quero saber mais
+            <i class="right chevron icon"></i>
+          </button>
+        </form>
+        <div class="privacy">
+          <i class="lock icon"></i>Ao enviar, você autoriza o recebimento de informações do Senac. Seus dados <b>nunca</b> serão compartilhadas com terceiros.
+        </div>
+      </div>
+    </div>
+</template>
+
+<template name="secondaryForm">
+  <p>Preencha os dados abaixo e valide seu desconto.</p>
+
+  <form id="secondaryForm" class="ui form">
+    <div class="field">
+      <label>Código do Cupom</label>
+      <input type="text" name="_id" value="{{ lead._id }}" disabled>
+    </div>
+    <div class="field">
+      <label>Nome</label>
+      <input type="text" name="name">
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" name="email" value="{{ lead.email }}">
+    </div>
+    <div class="field">
+      <label>Telefone</label>
+      <input type="text" name="phone">
+    </div>
+    <div class="field">
+      <label>Curso</label>
+      <select name="course" class="ui fluid search dropdown">
+        {{ #each course in getAllCourses }}
+          <option {{ selected course.title lead.course }} value="{{ course.title }}">{{ course.title }}</option>
+        {{ /each}}
+      </select>
+    </div>
+    <div class="field">
+      <label>Unidade</label>
+      <select name="unit" class="ui fluid search dropdown">
+        {{ #each unit in getAllUnits }}
+          <option {{ selected course.name lead.course }} value="{{ unit.name }}">{{ unit.name }}</option>
+        {{ /each}}
+      </select>
+    </div>
+    <div class="field">
+      <button type="submit" class="ui positive right labeled icon button">
+        Enviar
+        <i class="right chevron icon"></i>
+      </button>
+    </div>
+  </form>
+</template>
+
+<!-- =============== -->
+<!-- Admin Templates -->
+<!-- =============== -->
+
+<!-- ***** -->
+<!-- Admin -->
+<!-- ***** -->
+<template name="admin">
+  <div class="ui container">
+  <div class="left floated">
+    <h2>Painel Administrativo</h2>
+  </div>
+  <div class="right floated">
+    {{> loginButtons}}
+  </div>
+  <div class="ui divider"></div>
+  {{#if currentUser }}
+    {{ > Template.dynamic template=adminContent }}
+  {{ /if }}
+  </div>
+</template>
+
+<!-- ********* -->
+<!-- addCourse -->
+<!-- ********* -->
+<template name="addCourse">
+
+  <div class="ui grid">
+    <div class="row">
+      <div class="two wide column">&nbsp;</div>
+      <div class="twelve wide column">
+
+        <h1>Cadastrar Curso</h1>
+
+        <form id="addCourse" class="ui form">
+          <div class="field">
+            <label for="title">Nome do Curso</label>
+            <input class="ui input" type="text" name="title"/>
+          </div>
+
+          <div class="field">
+            <label class="title">Link do Curso</label>
+            <input class="ui input" type="text" name="link"/>
+          </div>
+
+          <div class="field">
+            <label>Descrição</label>
+            <textarea name="description" id="courseDescription" cols="30" rows="10"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Categoria</label>
+            <select class="ui fluid search dropdown" name="category">
+              {{ #each category }}
+                <option value="{{ name }}">{{ name }}</option>
+              {{ /each }}
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Modalidade</label>
+            <select name="modality" class="ui dropdown">
+              <option value="EAD">EAD</option>
+              <option value="Presencial">Presencial</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Unidades</label>
+            <select class="ui fluid search dropdown" multiple="" name="units">
+              {{ #each unit }}
+                <option value="{{ name }}">{{ name }}</option>
+              {{ /each }}
+            </select>
+          </div>
+          <div class="field">
+            <input class="ui right floated green button" type="submit" value="Cadastrar Curso" name="add-course-submit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    $('.ui.dropdown').dropdown();
+    $('#courseDescription').froalaEditor();
+  </script>
+
+  <div class="ui grid">
+    <div class="two wide column"></div>
+    <div class="eight wide column">
+      <div class="ui cards">
+        <div class="ui card">
+          <div class="content">
+            <div class="header">
+              Adicionar Categoria
+            </div>
+            <div class="description">
+              {{ > addCategory }}
+            </div>
+        </div>
+        </div>
+        <div class="ui card">
+          <div class="content">
+            <div class="header">
+              Adicionar Unidade
+            </div>
+            <div class="description">
+              {{ > addUnit }}
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- *********** -->
+<!-- addCategory -->
+<!-- *********** -->
+<template name="addCategory">
+  <form id="addCategory">
+    <div>
+      Nome da Categoria:
+      <input type="text" name="newCategory" />
+      <input type="submit" value="Cadastrar Categoria">
+    </div>
+  </form>
+</template>
+
+<!-- ************** -->
+<!-- editCategories -->
+<!-- ************** -->
+<template name="editCategories">
+  <h1>Editar Categorias</h1>
+  {{ #each category in categories }}
+    {{ > categoryRow category=category }}
+  {{ /each}}
+
+  {{ > addCategory }}
+</template>
+
+<!-- *********** -->
+<!-- categoryRow -->
+<!-- *********** -->
+<template name="categoryRow">
+  <div class="ui grid">
+    <div class="two wide column">
+      <input class="editable" type="text" name="name" value="{{category.name}}">
+    </div>
+    <div class="two wide column">
+      <input class="editable" type="text" name="modality" value="{{category.modality}}">
+    </div>
+    <div class="one wide column">
+      <a href="#" class="remove-category">&times;</a>
+    </div>
+  </div>
+</template>
+
+<!-- ******* -->
+<!-- addUnit -->
+<!-- ******* -->
+<template name="addUnit">
+  <form id="addUnitForm">
+    <div>
+      Nome da Unidade:
+      <input type="text" name="unit" />
+      <input type="submit" value="Cadastrar Unidade">
+    </div>
+  </form>
+</template>
+
+<!-- ********* -->
+<!-- editUnits -->
+<!-- ********* -->
+
+<template name="editUnits">
+  <ul>
+    {{ #each unit in units }}
+      {{ >unitRow unit=unit }}
+    {{ /each }}
+
+    {{ > addUnit }}
+  </ul>
+</template>
+
+<!-- ******* -->
+<!-- unitRow -->
+<!-- ******* -->
+<template name="unitRow">
+  <li class="unit-row">
+    <input type="text" name="unitName" class="unit-name" value="{{ unit.name }}">
+    <input type="text" name="unitRegion" class="unit-region" value="{{ unit.region }}">
+    <a href="#" class="delete-unit">&times;</a>
+  </li> 
+</template>
+
+<!-- *********** -->
+<!-- editCourses -->
+<!-- *********** -->
+<template name="editCourses">
+
+  <table class="ui celled padded table">
+    <thead>
+      <tr>
+        <th>Nome do Curso</th>
+        <th>Categoria</th>
+        <th>Modalidade</th>
+        <th>Descrição</th>
+        <th>Unidades</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ #each course in courses }}
+        {{ > adminCourseRow course=course }}
+      {{ /each }}
+    </tbody>
+  </table>
+</template>
+
+<!-- ************** -->
+<!-- adminCourseRow -->
+<!-- ************** -->
+<template name="adminCourseRow">
+  <tr>
+    <td>
+      <input type="text" name="title" value="{{course.title}}" />
+    </td>
+    <td>
+      <select name="category">
+        {{ #each category in categories }}
+          <option {{ selected category.name course.category }} value="{{category.name}}">{{category.name}}</option>
+        {{ /each }}
+      </select>
+    </td>
+    <td>
+      <select name="modality">
+          <option {{ selected "EAD" course.modality }} value="EAD">EAD</option>
+          <option {{ selected "Presencial" course.modality }} value="Presencial">Presencial</option>
+      </select>
+    </td>
+    <td>
+      <textarea name="description" class="course-description">{{{ course.description }}}</textarea>
+    </td>
+    <td>
+      {{ #each unit in units }}
+        <label><input {{ checked unit.name course.units }} type="checkbox" value="{{unit.name}}" name="{{course._id}}_units[]" />{{unit.name}}</label>
+      {{ /each }}
+
+    </td>
+    <td>
+      <a href="#" data-id="{{course._id}}" class="delete-course"><i class="icon delete"></i></a>
+    </td>
+  </tr>
+  
+  <input type="hidden" id="units" value="{{course.units}}" />
+  <!-- Template Custom Javascript -->
+  <script type="text/javascript">
+    //$('.ui.dropdown').dropdown();
+    $('.ui.dropdown').dropdown('set selected', 'Santana');
+    // $('.course-description').froalaEditor();
+  </script>
+</template>
+
+<!-- ***** -->
+<!-- leads -->
+<!-- ***** -->
+<template name="leads">
+  <table class="ui celled padded table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Curso</th>
+        <th>Modalidade</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ #each lead in leads }}
+        {{ > leadRow lead=lead }}
+      {{ /each }}
+    </tbody>
+  </table>
+</template>
+
+<template name="leadRow">
+  <tr>
+    <td>{{lead._id}}</td>
+    <td>{{lead.email}}</td>
+    <td>{{lead.course}}</td>
+    <td>{{lead.modality}}</td>
+    <td>{{date lead.date}}</td>
+  </tr>
+</template>

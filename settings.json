@@ -1,0 +1,7 @@
+{
+	"galaxy.meteor.com": {
+		"env": {
+			"MONGO_URL": "mongodb://mpgclients:qZwX1001@ds023078.mlab.com:23078/senac"
+		}
+	}
+}

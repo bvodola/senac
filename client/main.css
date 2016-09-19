@@ -1,0 +1,234 @@
+body p, body h1, body h2, body h3, body h4, body h5 {
+    font-family: 'gotham', sans-serif !important;
+}
+
+select {
+    line-height: 30px;
+    height: 40px;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    background: #fff;
+    width: 100%;
+    text-indent: 5px;
+    text-overflow: ellipsis !important;
+    padding-right: 40px;
+    background: rgb(255, 255, 255) url("https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-16.png") no-repeat scroll 95% center;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+select, select:active, select:hover {
+    outline: 0 !important;
+}
+
+.responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+.ret {
+    width: 100%;
+    height: 20px;
+    display: block;
+}
+
+@media(max-width: 768px) {
+    
+    .hidden-xs {
+        display: none !important;
+    }
+
+    .center-xs {
+        text-align: center !important;
+    }
+
+}
+
+@media(min-width: 769px) {
+    .visible-xs {
+        display: none !important;
+    }
+}
+
+
+/* ****** */
+/* Header */
+/* ****** */
+
+header {
+    margin-top: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+}
+    header .main-logo img {
+        max-width: 200px !important;
+    }
+
+    header .mobile-logo {
+        text-align: center;
+        width: 100%;
+    }
+
+    @media(min-width: 769px) {   
+        header .mobile-logo {
+            display: none;
+        }
+    }
+
+    header .hero-shot {
+        
+    }
+
+        header .hero-shot img {
+            max-width: 350px !important;
+        }
+
+    @media(max-width: 768px) {
+        header .hero-shot img {
+            display: none;
+        }
+    }
+
+    header .badge-header {
+
+    }
+
+        header .badge-header .badge {
+            text-align: right;
+            margin-bottom: 40px;
+        }
+
+            header .badge-header .badge img {
+                max-width: 130px;    
+            }
+
+        header .badge-header h1 {
+            color: #f7931c;
+            text-transform: uppercase;
+            font-family: 'gotham-bold', sans-serif !important;
+            font-size: 32px;
+            margin-bottom: 5px;
+            margin-top: 80px;
+        }
+
+        header .badge-header h2 {
+            color: #004b8d;
+            text-transform: uppercase;
+            font-size: 20px;
+            margin-top: 0px;
+        }
+
+
+    .header-description {
+        text-align: right;
+        color: #00478b;
+    }
+
+@media(max-width: 768px) {
+    header {
+        text-align: center;
+    }
+
+    header .header-description {
+        text-align: center;
+    }
+
+    header .badge-header h1 {
+        font-size: 20px;
+        margin-top: 0;
+    }
+
+    header .badge-header h2 {
+        font-size: 16px;
+    }
+}
+
+#leadForm .privacy {
+    color: rgb(153, 153, 153);
+    font-size: 10px;
+    margin-top: -10px;
+}
+
+/* ************ */
+/* Other Styles */
+/* ************ */
+
+.dropdown.selection {
+    height: 45px;
+    width: 100%;
+}
+
+@media(max-width: 768px) {
+    .field {
+        margin-bottom: 20px;
+    }
+}
+    
+.choose-units-wrapper {
+    margin-bottom: 20px;
+}
+
+
+.modal .content .description {
+	text-align: right;
+}
+
+    .modal .content .description .privacy {
+        margin-top: 40px;
+        text-align: center;
+        color: #666;
+        font-size: 10px;
+    }
+
+.modal .close.icon.modal-close {
+    color: rgb(204, 0, 0);
+    text-align: right;
+    top: 0px;
+    right: 10px;
+}
+
+@media(max-width: 768px) {
+    .modal .content .description button {
+        width: 100%;
+    }
+}
+
+.course-search-box .course-search-button {
+    width: 100%;
+}
+
+.unit-mass-selectors {
+    margin-bottom: 10px;
+}
+
+.unit-region-title {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Course List */
+
+#courseListWrapper h2 {
+    color: #f7931c;
+}
+
+#courseListWrapper .course-title {
+    color: #004b8d;
+}
+
+.search-instructions {
+    font-size: 18px;
+    color: rgb(247, 147, 28);
+}
+
+.ui.form .field .ui.button {
+    margin-top: 20px;
+}
+
+#courseDescription {
+    height: 300px;
+}

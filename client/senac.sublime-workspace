@@ -1,0 +1,543 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"clear",
+				"clearFields"
+			],
+			[
+				"attr",
+				"attributes"
+			],
+			[
+				"widget",
+				"widgetHTML"
+			],
+			[
+				"box-s",
+				"box-sizing: "
+			],
+			[
+				"li",
+				"line-through"
+			],
+			[
+				"cn",
+				"console"
+			],
+			[
+				"admin",
+				"adminCourses"
+			],
+			[
+				"ee",
+				"events"
+			],
+			[
+				"adm",
+				"adminCourseRow"
+			],
+			[
+				"find",
+				"findCategories"
+			],
+			[
+				"get",
+				"getPixelInfo"
+			],
+			[
+				"city",
+				"cityadsClickId"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"text-",
+				"text-align"
+			],
+			[
+				"rg",
+				"rgba()"
+			],
+			[
+				"webfac",
+				"webfaction_username"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"test_app",
+				"test_app_build"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/home/bvodola/Projects/senac3/lib/routes.js",
+			"settings":
+			{
+				"buffer_size": 2539,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/home/bvodola/Projects/senac3/imports/api/leads.js",
+			"settings":
+			{
+				"buffer_size": 2256,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/bvodola/Projects/senac3/server/main.js",
+			"settings":
+			{
+				"buffer_size": 272,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 96.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 344.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/bvodola/Projects/senac3",
+		"/home/bvodola/Projects/senac3/client",
+		"/home/bvodola/Projects/senac3/imports",
+		"/home/bvodola/Projects/senac3/imports/api",
+		"/home/bvodola/Projects/senac3/server"
+	],
+	"file_history":
+	[
+		"/home/bvodola/Projects/senac3/server/main.js",
+		"/home/bvodola/Projects/senac3/lib/models.js",
+		"/home/bvodola/Projects/senac3/client/main.js",
+		"/home/bvodola/Projects/senac3/client/main.html",
+		"/home/bvodola/Projects/senac3/lib/accounts.js",
+		"/home/bvodola/Projects/senac3/lib/routes.js",
+		"/home/bvodola/Projects/senac3/client/main.css",
+		"/home/bvodola/Projects/senac3/.meteor/packages",
+		"/home/bvodola/Projects/senac3/imports/api/leads.js",
+		"/home/bvodola/Projects/senac3/wf_deploy.json",
+		"/home/bvodola/Downloads/senac_email.html",
+		"/home/bvodola/Projects/suits/client/sass/main.sass",
+		"/home/bvodola/Projects/suits/server/main.js",
+		"/home/bvodola/Projects/suits/imports/api/attributes.js",
+		"/home/bvodola/Projects/suits/imports/api/clients.js",
+		"/home/bvodola/Projects/suits/imports/js/datepicker.methods.js",
+		"/home/bvodola/Projects/suits/imports/api/logs.js",
+		"/home/bvodola/Projects/suits/client/main.css",
+		"/home/bvodola/Projects/suits/imports/js/datepicker.js",
+		"/home/bvodola/Projects/suits/imports/css/datepicker.css",
+		"/home/bvodola/Projects/suits/client/main.html",
+		"/home/bvodola/Projects/suits/lib/routes.js",
+		"/home/bvodola/Projects/suits/client/main.js",
+		"/home/bvodola/Projects/suits/.meteor/packages",
+		"/home/bvodola/Projects/suits/.bowerrc",
+		"/home/bvodola/Projects/suits/bower_components/bootstrap/bower.json",
+		"/home/bvodola/Projects/suits/bower_components/bootstrap-material-datetimepicker/index.html",
+		"/home/bvodola/Projects/suits/.meteor/versions",
+		"/home/bvodola/Projects/suits/imports/api/tasks.js",
+		"/home/bvodola/Projects/cmotors/client/main.js",
+		"/home/bvodola/Projects/cmotors/client/main.css",
+		"/home/bvodola/Projects/test_app/client/main.js",
+		"/home/bvodola/Projects/grido/client/main.css",
+		"/home/bvodola/Projects/senac3/public/css/animations.css",
+		"/home/bvodola/Projects/simple-todos/imports/ui/Task.jsx",
+		"/home/bvodola/Projects/simple-todos/server/main.js",
+		"/home/bvodola/Projects/simple-todos/imports/ai/tasks.js",
+		"/home/bvodola/Projects/simple-todos/client/main.html",
+		"/home/bvodola/Projects/simple-todos/client/main.jsx",
+		"/home/bvodola/Projects/simple-todos/imports/ui/App.jsx",
+		"/home/bvodola/Projects/simple-todos/client/main.css",
+		"/home/bvodola/Projects/senac3/imports/api/courses.js",
+		"/home/bvodola/Projects/senac3/imports/api/categories.js",
+		"/home/bvodola/Projects/senac3/public/fonts/gotham/stylesheet.css",
+		"/home/bvodola/Projects/test_app/client/main.html",
+		"/home/bvodola/Projects/test_app/client/main.css",
+		"/home/bvodola/Projects/senac3/imports/api/units.js",
+		"/home/bvodola/Projects/localmarket/client/templates/nav.html",
+		"/home/bvodola/Projects/localmarket/client/templates/nav.js",
+		"/home/bvodola/Projects/localmarket/client/templates/recipes.html",
+		"/home/bvodola/Projects/test_meteor_3/wf_deploy.json"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"zanox",
+			"prepend",
+			"checked",
+			"courseModal",
+			"{{catego",
+			"{{ catego",
+			"choosenCategory",
+			"choosenModality",
+			"addCate",
+			"href=\"http://senac.mpg.net.br",
+			"href=\"senac.mpg.net.br",
+			"senac.mpg.net.br",
+			"getQueryParam",
+			"console.log",
+			"addClient",
+			"veloc",
+			"tarefa",
+			"tarea",
+			"clear",
+			"clear\\",
+			"attrib",
+			"lead",
+			"Clients.",
+			"Clients.insert",
+			"clients.insert",
+			"leads.insert",
+			"getP",
+			"stackable",
+			"prop",
+			"checked",
+			"courseSearch",
+			"courseSarch",
+			"update",
+			"search",
+			"course",
+			"name=\"cate",
+			"[]",
+			"name=\"",
+			"name=\"{{",
+			"name={{",
+			"selected",
+			"course-sear",
+			"{{ course",
+			"{{ course }}",
+			"ui",
+			".call('find",
+			"addCourse",
+			"Categories.find",
+			"categories.fin",
+			"categories.find",
+			"Meteor.call('getPixelInfo')",
+			"getPixelInfo",
+			".call",
+			"cityadspix",
+			"header",
+			"courseModal",
+			"<form",
+			"[name=",
+			"query.",
+			"Unit.",
+			"Unit",
+			".create",
+			"courseLIst",
+			"form submit",
+			"courseList",
+			"modal",
+			"modal\"",
+			"modal",
+			"unit-menu",
+			"hide",
+			"unit-menu",
+			"rm",
+			"webfaction",
+			"util.print",
+			"sys",
+			"socket",
+			"courseSearch",
+			"units",
+			"courseNumber",
+			"Session.set('course",
+			"courseList",
+			"courseRow",
+			"addCategory",
+			"addCourse",
+			"courseRow",
+			"Courses.find(",
+			"choosenCategory",
+			"title",
+			".find(",
+			"name",
+			"single",
+			"addCategory",
+			"modal",
+			"modalTi",
+			"modalLink",
+			"modalTitle",
+			"modal",
+			"}",
+			"{",
+			";",
+			"EAD",
+			"Logo",
+			"ver tamanhos ",
+			"productsList",
+			"product",
+			"darken",
+			"console.log",
+			"feed",
+			"iconBadge",
+			"session",
+			"Categories",
+			"addCategory",
+			"find()",
+			"created"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"getPixelInfo()",
+			"wf",
+			"console.log",
+			"util",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/home/bvodola/Projects/senac3/lib/routes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2539,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/bvodola/Projects/senac3/imports/api/leads.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2256,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								524,
+								524
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/bvodola/Projects/senac3/server/main.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 272,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								272,
+								272
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "senac.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"/media/bvodola/2C207DB2207D839C/Users/THIAGO/Projects/_proj/mpg.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 336.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
