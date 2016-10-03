@@ -12,7 +12,9 @@ Meteor.methods({
 	'createLead'(lead,pixel = {}) {
 
 		Leads.insert({
+			name: lead.name,
 		  email: lead.email,
+			phone: lead.phone,
 		  source: lead.source,
 		  course: lead.course,
 		  modality: lead.modality,
@@ -22,7 +24,7 @@ Meteor.methods({
 
 		  // Checks if there was a lead added
 		  if(!e) {
-		  	
+
 		    // If the Source of Traffic is CityAds, inserts their Pixel
 		    if(lead.source == 'cityads') {
 		    	if(Meteor.isClient) {
@@ -35,7 +37,7 @@ Meteor.methods({
 	    			$("body").prepend("<script type=\"text/javascript\" src=\"http://ad.zanox.com/ppl/?17526C779878946&mode=[[1]]&OrderID=[["+leadId+"]]&PartnerID=[["+pixel.partnerId+"]]\"></script><noscript><img src=\"http://ad.zanox.com/ppl/?17526C779878946&mode=[[2]]&OrderID=[["+leadId+"]]&PartnerID=[["+pixel.partnerId+"]]\" width=\"1\" height=\"1\"></noscript>");
 		    	}
 		    	console.log("<script type=\"text/javascript\" src=\"http://ad.zanox.com/ppl/?17526C779878946&mode=[[1]]&OrderID=[["+leadId+"]]&PartnerID=[["+pixel.partnerId+"]]\"></script><noscript><img src=\"http://ad.zanox.com/ppl/?17526C779878946&mode=[[2]]&OrderID=[["+leadId+"]]&PartnerID=[["+pixel.partnerId+"]]\" width=\"1\" height=\"1\"></noscript>");
-		    }	
+		    }
 
 		  }
 		  else {

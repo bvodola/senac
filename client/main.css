@@ -34,7 +34,7 @@ select, select:active, select:hover {
 }
 
 @media(max-width: 768px) {
-    
+
     .hidden-xs {
         display: none !important;
     }
@@ -71,14 +71,14 @@ header {
         width: 100%;
     }
 
-    @media(min-width: 769px) {   
+    @media(min-width: 769px) {
         header .mobile-logo {
             display: none;
         }
     }
 
     header .hero-shot {
-        
+
     }
 
         header .hero-shot img {
@@ -101,7 +101,7 @@ header {
         }
 
             header .badge-header .badge img {
-                max-width: 130px;    
+                max-width: 130px;
             }
 
         header .badge-header h1 {
@@ -165,7 +165,7 @@ header {
         margin-bottom: 20px;
     }
 }
-    
+
 .choose-units-wrapper {
     margin-bottom: 20px;
 }
@@ -231,4 +231,26 @@ header {
 
 #courseDescription {
     height: 300px;
+}
+
+/* Admin */
+
+.admin-course-row {
+    font-size: 12px !important;
+}
+
+.admin-course-row .units label{
+    display: inline-block;
+    width: 32%;
+    line-height: 26px;
+    font-size: 10px;
+}
+
+.admin-course-row textarea.course-description {
+  width: 350px;
+  height: 150px;
+}
+
+.admin-course-row .units label input[type=checkbox] {
+    margin-right: 3px;
 }

@@ -30,7 +30,7 @@ Template.leadForm.events({
     // Set some variables to be passed to the createLead Method
     lead.email = $("#leadForm input[name=email]").val();
     lead.source = pixel.source;
-    
+
     // Call Insert Lead Function
     Meteor.call('createLead', lead, pixel);
 
@@ -56,7 +56,7 @@ Template.courseList.events({
     Session.set('modalTitle', $(event.target).data('title'));
     Session.set('modalLink', $(event.target).data('link'));
   },
-  
+
 });
 
 
@@ -89,7 +89,9 @@ Template.courseModal.events({
     let pixel = getPixelInfo(); // Info about the generated pixel
 
     // Set some variables to be passed to the createLead Method
+    lead.name = $("#formInfoCurso input[name=name]").val();
     lead.email = $("#formInfoCurso input[name=email]").val();
+    lead.phone = $("#formInfoCurso input[name=phone]").val();
     lead.source = pixel.source;
     lead.course = Session.get('modalTitle');
     lead.modality = Session.get('choosenModality');
@@ -101,7 +103,7 @@ Template.courseModal.events({
     // Opens the Course Information Page and Hides the courseModal
     window.open($("#formInfoCurso").attr('action'), '_blank');
     $('.ui.modal').modal('hide');
-    
+
   }
 });
 
@@ -131,23 +133,23 @@ Template.courseSearch.events({
       $(".unit-menu").hide('fade'); // Hide Units Menu
     }
   },
-  
+
   'submit form': function(event){
     event.preventDefault();
-    
+
     $("html, body").animate({ scrollTop: $('#courseListWrapper').offset().top }, "slow");
 
-    
+
     // Set the query object
     let query = new Object();
-    
+
     // Modality
     if ( $("[name=modality]:checked").val() != 'all' && $("[name=modality]:checked").val() != '') {
       query.modality = $("[name=modality]:checked").val();
       Session.set('searchedModality', $("[name=modality]:checked").val());
     }
 
-    
+
     // Units
     let units = [];
     $("[name='units[]']:checked").each( function(){
@@ -165,9 +167,9 @@ Template.courseSearch.events({
     Session.set('course', Courses.find(query, {sort: {title: 1}}).fetch());
     Session.set('courseNumber', Courses.find(query, {sort: {title: 1}}).count());
   },
-  
+
   'change [name=choose-units]': function(event) {
-    
+
     if($(event.target).is(":checked")) {
       $(".unit-menu-fields").show('fade');
     }
@@ -205,8 +207,8 @@ Template.courseSearch.events({
         $(this).children().children("input[type=checkbox]").prop('checked', true);
     });
   }
-  
-  
+
+
 });
 
 // *******
@@ -221,12 +223,12 @@ Template.courseSearch.helpers({
     return Units.find(filters, {sort: {name: 1}});
   },
 
-  
+
   'categories': function() {
     console.log(Categories.find({modality: Session.get('choosenModality')}, {sort: {name: 1}}).fetch());
     return Categories.find({modality: Session.get('choosenModality')}, {sort: {name: 1}});
   },
-  
+
   'choosenCategory': function() {
     return Session.get('choosenCategory');
   },
@@ -257,7 +259,7 @@ Template.courseSearch.helpers({
       return false;
     }
   }
-  
+
 });
 
 
@@ -284,7 +286,7 @@ Template.secondaryForm.helpers({
 Template.addCourse.events({
   'submit form#addCourse': function(event){
     event.preventDefault();
-    
+
     // Saves Entry
     Courses.insert({
       title: $('[name=title]').val(),
@@ -294,16 +296,26 @@ Template.addCourse.events({
       modality: $('[name=modality]').val(),
       units: $('[name=units]').val()
     });
-    
+
     // Clear Form
     $('[name=title]').val('');
     $('[name=link]').val('');
     $('[name=description]').val('');
-    $('[name=category]').val('');
-    $('[name=modality]').val('');
+    $('.fr-view').html('')
     $('[name=units]').val('');
     $('[name=units]').dropdown('clear');
 
+    // Feedback to the user
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
+    $('#flashMessage').fadeIn();
+     setTimeout(function () {
+        $('#flashMessage').fadeOut();
+    }, 2000);
+
+
+  },
+  'click #closeFlashMessage': function(event) {
+    $('#flashMessage').hide();
   }
 });
 
@@ -394,7 +406,7 @@ Template.categoryRow.events({
     'keyup input.editable, change input.editable, change select.editable': _.debounce(function(event) {
 
     let set = {};
-    
+
     if($(event.target).attr('type') == 'checkbox') {
       set[$(event.target).attr('name')] = $(event.target).prop('checked');
     }
@@ -419,7 +431,7 @@ Template.categoryRow.events({
         console.log(s);
       else
         console.log(e);
-    }); 
+    });
   }
 
 });
@@ -443,7 +455,7 @@ Template.adminCourseRow.helpers({
     return Categories.find().fetch();
   },
   units: function(){
-    return Units.find().fetch();
+    return Units.find({},{sort: {name: 1 }}).fetch();
   }
 });
 

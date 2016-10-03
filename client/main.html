@@ -98,18 +98,18 @@
 <!-- courseSearch -->
 <!-- ************ -->
 <template name="courseSearch">
-  
+
   <div class="ui stackable grid">
     <div class="row">
       <div class="four wide column segment course-search-box">
         <form class="ui segments">
-          
+
           <!--
           Modality
           -->
           <div class="ui segment">
             <div class="ui top attached label">Modalidade</div>
-            
+
             <div class="grouped fields">
               <div class="field">
                 <div class="ui radio checkbox modality-radio">
@@ -124,9 +124,9 @@
                 </div>
               </div>
             </div>
-            
+
           </div>
-          
+
           <!--
           Category
           -->
@@ -139,20 +139,20 @@
               {{ /each }}
             </select>
           </div>
-          
+
           <!--
           Unit
           -->
           <div class="ui segment unit-menu">
             <div class="ui top attached label">Unidade</div>
-            
+
             <div class="field choose-units-wrapper">
               <div class="ui toggle checkbox">
                 <input type="checkbox" name="choose-units">
                 <label>Escolher Unidades</label>
               </div>
             </div>
-            
+
             <div class="grouped fields unit-menu-fields">
               <div class="field unit-mass-selectors">
                 <div class="ui buttons tiny">
@@ -215,10 +215,10 @@
               Buscar Cursos
             </button>
           </div>
-          
+
         </form>
       </div>
-      
+
       <!-- *********** -->
       <!-- Course List -->
       <!-- *********** -->
@@ -241,20 +241,20 @@
                 <span class="hidden-xs">ao lado</span><span class="visible-xs">acima</span>.
                 Os resultados vão aparecer aqui.
               </div>
-              
+
           {{ /if }}
 
         {{ /if }}
       </div>
     </div>
   </div>
-  
+
   <!-- Custom Template Javascript -->
   <script type="text/javascript">
     $(".unit-menu-fields").hide();
     $('.ui.checkbox').checkbox();
   </script>
-  
+
 </template>
 
 
@@ -267,7 +267,7 @@
       {{ > courseRow}}
     {{ /each }}
   </div>
-  
+
   <!-- Course Modal -->
   <div class="ui small modal">
   {{ > courseModal }}
@@ -287,7 +287,7 @@
           {{category}}
           <div class="detail">{{modality}}</div>
         </a> -->
-        
+
         {{ #each units}}
         <div class="ui label">
           <i class="fitted marker icon"></i>
@@ -303,14 +303,14 @@
           {{{description}}}
         </p>
       </div>
-      
+
       <div class="extra">
         <button data-title="{{title}}" data-link="{{link}}" class="ui right floated primary button modal-button">
           Saiba Mais
           <i class="right chevron icon"></i>
         </button>
       </div>
-      
+
     </div>
   </div>
 </template>
@@ -319,17 +319,23 @@
 <!-- courseModal -->
 <!-- *********** -->
 <template name="courseModal">
-  
+
     <i class="modal-close close icon" style="float: right"></i>
     <div class="header">
       Mais informações sobre o curso de {{modalTitle}}
     </div>
-    
+
     <div class="content">
       <div class="description">
         <form method="POST" id="formInfoCurso" class="ui form" action="{{modalLink}}" target="_blank">
           <div class="field">
-            <input type="email" name="email" placeholder="Digite seu email..." required />
+            <input type="text" name="name" placeholder="Seu nome completo" required />
+          </div>
+          <div class="field">
+            <input type="email" name="email" placeholder="Seu email" required />
+          </div>
+          <div class="field">
+            <input type="text" name="phone" placeholder="Seu telefone" class="phone-mask" required />
           </div>
           <button type="submit" id="btnInfoCurso" class="ui positive right labeled icon button">
             Quero saber mais
@@ -341,6 +347,10 @@
         </div>
       </div>
     </div>
+
+    <script type="text/javascript">
+      $('.phone-mask').mask('(00) 00000-0000');
+    </script>
 </template>
 
 <template name="secondaryForm">
@@ -416,9 +426,12 @@
 <template name="addCourse">
 
   <div class="ui grid">
+
+    <div id='flashMessage' style="width: 100%;" class="ui green inverted segment">Curso Cadastrado com Sucesso! <span style="float: right; cursor: pointer;" id="closeFlashMessage">&times;</span></div>
+
     <div class="row">
       <div class="two wide column">&nbsp;</div>
-      <div class="twelve wide column">
+      <div class="sixteen wide column">
 
         <h1>Cadastrar Curso</h1>
 
@@ -469,15 +482,18 @@
       </div>
     </div>
   </div>
-  
+
   <script>
     $('.ui.dropdown').dropdown();
     $('#courseDescription').froalaEditor();
+    $('#flashMessage').hide();
   </script>
 
   <div class="ui grid">
-    <div class="two wide column"></div>
-    <div class="eight wide column">
+
+    <div class="sixteen wide column">
+    <h1>Outras Opções</h1>
+    <p>Use as opções abaixo apenas caso não encontre uma categoria ou unidade já pré-cadastrada.</p>
       <div class="ui cards">
         <div class="ui card">
           <div class="content">
@@ -581,7 +597,7 @@
     <input type="text" name="unitName" class="unit-name" value="{{ unit.name }}">
     <input type="text" name="unitRegion" class="unit-region" value="{{ unit.region }}">
     <a href="#" class="delete-unit">&times;</a>
-  </li> 
+  </li>
 </template>
 
 <!-- *********** -->
@@ -592,9 +608,7 @@
   <table class="ui celled padded table">
     <thead>
       <tr>
-        <th>Nome do Curso</th>
-        <th>Categoria</th>
-        <th>Modalidade</th>
+        <th>Nome/Categoria/Modalidade</th>
         <th>Descrição</th>
         <th>Unidades</th>
         <th>Ações</th>
@@ -612,27 +626,34 @@
 <!-- adminCourseRow -->
 <!-- ************** -->
 <template name="adminCourseRow">
-  <tr>
+  <tr class="admin-course-row">
     <td>
-      <input type="text" name="title" value="{{course.title}}" />
-    </td>
-    <td>
+      <div class="ui form">
+        <div class="field">
+          <input type="text" name="title" value="{{course.title}}" />
+        </div>
+      </div>
+
       <select name="category">
         {{ #each category in categories }}
           <option {{ selected category.name course.category }} value="{{category.name}}">{{category.name}}</option>
         {{ /each }}
       </select>
-    </td>
-    <td>
+
       <select name="modality">
           <option {{ selected "EAD" course.modality }} value="EAD">EAD</option>
           <option {{ selected "Presencial" course.modality }} value="Presencial">Presencial</option>
       </select>
     </td>
+
     <td>
-      <textarea name="description" class="course-description">{{{ course.description }}}</textarea>
+      <!-- <a href="#" class="course-description-link">Ver descrição</a> -->
+      <div class="course-description-modal">
+        <!-- <a href="#" class="course-description-close">&times;</a> -->
+        <textarea name="description" class="course-description">{{{ course.description }}}</textarea>
+      </div>
     </td>
-    <td>
+    <td class="units">
       {{ #each unit in units }}
         <label><input {{ checked unit.name course.units }} type="checkbox" value="{{unit.name}}" name="{{course._id}}_units[]" />{{unit.name}}</label>
       {{ /each }}
@@ -642,13 +663,27 @@
       <a href="#" data-id="{{course._id}}" class="delete-course"><i class="icon delete"></i></a>
     </td>
   </tr>
-  
+
   <input type="hidden" id="units" value="{{course.units}}" />
+
   <!-- Template Custom Javascript -->
   <script type="text/javascript">
-    //$('.ui.dropdown').dropdown();
     $('.ui.dropdown').dropdown('set selected', 'Santana');
     // $('.course-description').froalaEditor();
+
+
+    // $('.course-description-modal').hide();
+    //
+    // $('.course-description-link').click(function(event){
+    //   event.preventDefault();
+    //   $(this).closest('td').find('.course-description-modal').show();
+    //   console.log('show');
+    // });
+    // $('.course-description-close').click(function(event){
+    //   event.preventDefault();
+    //   $(this).closest('td').find('.course-description-modal').hide();
+    //   console.log('hide');
+    // });
   </script>
 </template>
 
@@ -656,11 +691,13 @@
 <!-- leads -->
 <!-- ***** -->
 <template name="leads">
-  <table class="ui celled padded table">
+  <table class="ui celled padded table" style="font-size:11px">
     <thead>
       <tr>
         <th>Id</th>
+        <th>Nome</th>
         <th>Email</th>
+        <th>Telefone</th>
         <th>Curso</th>
         <th>Modalidade</th>
         <th>Data</th>
@@ -677,7 +714,9 @@
 <template name="leadRow">
   <tr>
     <td>{{lead._id}}</td>
+    <td>{{lead.name}}</td>
     <td>{{lead.email}}</td>
+    <td>{{lead.phone}}</td>
     <td>{{lead.course}}</td>
     <td>{{lead.modality}}</td>
     <td>{{date lead.date}}</td>
