@@ -234,6 +234,30 @@ header {
 }
 
 /* Admin */
+.admin-navigation {
+  margin-top: 20px;
+}
+
+.admin-navigation .logo {
+
+}
+
+.admin-navigation .logo img {
+  width: 130px;
+}
+
+.admin-navigation .header h2{
+  line-height: 50px;
+}
+
+.admin-navigation .login-buttons {
+  line-height: 50px;
+  text-align: right;
+}
+
+#login-dropdown-list {
+  left: -180px;
+}
 
 .admin-course-row {
     font-size: 12px !important;
@@ -241,7 +265,7 @@ header {
 
 .admin-course-row .units label{
     display: inline-block;
-    width: 32%;
+    width: 48%;
     line-height: 26px;
     font-size: 10px;
 }

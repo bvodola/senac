@@ -59,7 +59,9 @@ Template.courseList.events({
 
 });
 
-
+Template.courseRow.onRendered(function() {
+  changeUnitName('.unit-badge');
+});
 // ====================
 // courseModal Template
 // ====================
@@ -117,6 +119,7 @@ Template.courseSearch.onCreated(function() {
   Session.setDefault('searchedModality','Presencial');
 });
 
+
 // ******
 // Events
 // ******
@@ -127,7 +130,9 @@ Template.courseSearch.events({
 
     if($(event.target).html() == 'Presencial') {
       Session.set('choosenModality', 'Presencial');
-      $(".unit-menu").show('fade'); // Show Units Menu
+      $(".unit-menu").show('fade', function() {
+        changeUnitName('.unit-label');
+      }); // Show Units Menu
     } else {
       Session.set('choosenModality', 'EAD');
       $(".unit-menu").hide('fade'); // Hide Units Menu
@@ -171,7 +176,9 @@ Template.courseSearch.events({
   'change [name=choose-units]': function(event) {
 
     if($(event.target).is(":checked")) {
-      $(".unit-menu-fields").show('fade');
+      $(".unit-menu-fields").show('fade', function(){
+        changeUnitName('.unit-label');
+      });
     }
     else {
       $(".unit-menu-fields").hide('fade');
@@ -223,6 +230,37 @@ Template.courseSearch.helpers({
     return Units.find(filters, {sort: {name: 1}});
   },
 
+  'customUnits': function(region) {
+    if(region === 'Capital') {
+      return [
+        { name: 'Santo Amaro' },
+        { name: 'Aclimação' },
+        { name: 'Francisco Matarazzo' },
+        { name: 'Jabaquara' },
+        { name: 'Lapa Faustolo' },
+        { name: 'Lapa Scipião' },
+        { name: 'Lapa Tito' },
+        { name: 'Osasco' },
+        { name: 'Santo André' },
+        { name: 'Tiradentes' }
+      ];
+    }
+    else if (region === 'Interior') {
+      return [
+        { name: 'Águas de São Pedro' },
+        { name: 'Campos do Jordão' },
+        { name: 'Bauru' },
+        { name: 'Campinas' },
+        { name: 'Jundiaí' },
+        { name: 'Piracicaba' },
+        { name: 'Presidente Prudente' },
+        { name: 'Ribeirão Preto' },
+        { name: 'São José do Rio Preto' },
+        { name: 'São José dos Campos' },
+        { name: 'Sorocaba' }
+      ];
+    }
+  },
 
   'categories': function() {
     console.log(Categories.find({modality: Session.get('choosenModality')}, {sort: {name: 1}}).fetch());
@@ -494,14 +532,27 @@ Template.adminCourseRow.events({
 
   },
 
+  'change input[name=title]': function(event) {
+
+    Courses.update(this.course._id, {
+      $set: { title: $(event.target).val() },
+    }, function(e,id) {
+      if(!e)
+        console.log("id = "+id);
+      else
+        console.log("e = "+e);
+    });
+
+  },
+
   'click a.delete-course': function(event) {
     event.preventDefault();
     Courses.remove($(event.currentTarget).data('id'));
   },
 
-  'keyup .course-description': function(event) {
+  'click .course-description-save-button': function(event) {
 
-    let newDescription = $(event.target).val();
+    let newDescription = $(event.target).closest('.course-description-modal').find('.course-description').val();
     console.log(newDescription);
 
     Courses.update(this.course._id, {
@@ -513,6 +564,20 @@ Template.adminCourseRow.events({
         console.log("e = "+e);
     });
 
+  },
+
+  'click .course-description-toggle-froala': function(event) {
+
+    // Select the course description element
+    courseDescription = $(event.target).closest('.course-description-modal').find('.course-description');
+    courseDescriptionFroala = $(event.target).closest('.course-description-modal').find('.fr-wrapper');
+
+    // Toggles the Froala Editor
+    if( $(courseDescriptionFroala).length == 0) {
+      $(courseDescription).froalaEditor();
+    } else {
+      $(courseDescription).froalaEditor('destroy');
+    }
   }
 });
 
@@ -525,6 +590,7 @@ Template.leads.helpers({
     return Leads.find({},{sort: {date: 1 }});
   }
 });
+
 
 // ==========
 // UI Helpers
@@ -577,4 +643,12 @@ getPixelInfo = function() {
   }
 
   return pixel;
+}
+
+changeUnitName = function(selector) {
+  document.querySelectorAll(selector).forEach(function(v,i,a){
+    if (v.textContent == 'Santo Amaro' || v.textContent == 'Águas de São Pedro' || v.textContent == 'Campos do Jordão') {
+      v.textContent = 'Centro Universitário SENAC - '+v.textContent;
+    }
+  });
 }

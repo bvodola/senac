@@ -1,7 +1,7 @@
 {
 	"local_app_name": "senac3",
 	"wf_app_name": "test_meteor",
-	"wf_server": "web506.webfaction.com",
+	"wf_server": "web540.webfaction.com",
 	"wf_username": "bvodola",
 	"mongo_url": "mongodb://senac_db:qZwX1001@ds023078.mlab.com:23078/senac",
 	"wf_port": "22788",

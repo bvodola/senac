@@ -165,11 +165,11 @@
               <!-- Capital -->
               <div class="unit-region-wrapper">
                 <a href="#" class="unit-region-title">Capital e Grande SP</a>
-                {{ #each unit "Capital" }}
+                {{ #each customUnits "Capital" }}
                 <div class="field">
                   <div class="ui checkbox">
                     <input type="checkbox" name="units[]" id="{{ _id }}" value="{{ name }}" checked />
-                    <label for="{{ _id }}">{{ name }}</label>
+                    <label class="unit-label" for="{{ _id }}">{{ name }}</label>
                   </div>
                 </div>
                 {{ /each }}
@@ -179,29 +179,29 @@
               <!-- Interior -->
               <div class="unit-region-wrapper">
                 <a href="#" class="unit-region-title">Interior</a>
-                {{ #each unit "Interior" }}
+                {{ #each customUnits "Interior" }}
                 <div class="field">
                   <div class="ui checkbox">
                     <input type="checkbox" name="units[]" id="{{ _id }}" value="{{ name }}" checked />
-                    <label for="{{ _id }}">{{ name }}</label>
+                    <label class="unit-label" for="{{ _id }}">{{ name }}</label>
                   </div>
                 </div>
                 {{ /each }}
               </div>
 
-              <div class="ret"></div>
+              <!-- <div class="ret"></div> -->
               <!-- Litoral -->
-              <div class="unit-region-wrapper">
+              <!-- <div class="unit-region-wrapper">
                 <a href="#" class="unit-region-title">Litoral</a>
                 {{ #each unit "Litoral" }}
                 <div class="field">
                   <div class="ui checkbox">
                     <input type="checkbox" name="units[]" id="{{ _id }}" value="{{ name }}" checked />
-                    <label for="{{ _id }}">{{ name }}</label>
+                    <label class="unit-label" for="{{ _id }}">{{ name }}</label>
                   </div>
                 </div>
                 {{ /each }}
-              </div>
+              </div> -->
 
             </div>
           </div>
@@ -253,6 +253,13 @@
   <script type="text/javascript">
     $(".unit-menu-fields").hide();
     $('.ui.checkbox').checkbox();
+
+    document.querySelectorAll('.unit-label').forEach(function(v,i,a){
+      if (v.textContent == 'Santo Amaro') {
+        v.textContent = 'Centro Universitário - '+v.textContent;
+      }
+    });
+
   </script>
 
 </template>
@@ -282,16 +289,11 @@
     <div class="content">
       <p class="header course-title">{{title}}</p>
       <div class="extra">
-        <!-- <a class="ui yellow image label">
-          <i class="university icon"></i>
-          {{category}}
-          <div class="detail">{{modality}}</div>
-        </a> -->
 
         {{ #each units}}
         <div class="ui label">
           <i class="fitted marker icon"></i>
-          <span>{{this}}</span>
+          <span class="unit-badge" >{{this}}</span>
         </div>
         {{ /each }}
       </div>
@@ -407,11 +409,18 @@
 <!-- ***** -->
 <template name="admin">
   <div class="ui container">
-  <div class="left floated">
-    <h2>Painel Administrativo</h2>
-  </div>
-  <div class="right floated">
-    {{> loginButtons}}
+  <div class="admin-navigation">
+    <div class="ui grid">
+      <div class="logo three wide column">
+        <img src="img/logo-senac-70-anos.gif" class="responsive" />
+      </div>
+      <div class="header nine wide column">
+        <h2>Painel Administrativo</h2>
+      </div>
+      <div class="login-buttons four wide column">
+        {{> loginButtons}}
+      </div>
+    </div>
   </div>
   <div class="ui divider"></div>
   {{#if currentUser }}
@@ -650,7 +659,13 @@
       <!-- <a href="#" class="course-description-link">Ver descrição</a> -->
       <div class="course-description-modal">
         <!-- <a href="#" class="course-description-close">&times;</a> -->
-        <textarea name="description" class="course-description">{{{ course.description }}}</textarea>
+        <div class="row">
+          <textarea name="description" class="course-description">{{{ course.description }}}</textarea>
+        </div>
+        <div class="row">
+          <button class="ui blue button course-description-toggle-froala">Editor</button>
+          <button class="ui green button course-description-save-button">Salvar Texto</button>
+        </div>
       </div>
     </td>
     <td class="units">
@@ -669,7 +684,6 @@
   <!-- Template Custom Javascript -->
   <script type="text/javascript">
     $('.ui.dropdown').dropdown('set selected', 'Santana');
-    // $('.course-description').froalaEditor();
 
 
     // $('.course-description-modal').hide();
@@ -691,6 +705,7 @@
 <!-- leads -->
 <!-- ***** -->
 <template name="leads">
+  <h1>Leads</h1>
   <table class="ui celled padded table" style="font-size:11px">
     <thead>
       <tr>
