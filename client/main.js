@@ -85,26 +85,39 @@ Template.courseModal.events({
   'submit #formInfoCurso': function(event) {
     event.preventDefault();
 
-    // Sets initial value for some variables
+    if (validateCPF($("#formInfoCurso input[name=cpf]").val())) {
+      // Sets initial value for some variables
+      let lead = {}; // Info about the lead
+      let pixel = getPixelInfo(); // Info about the generated pixel
 
-    let lead = {}; // Info about the lead
-    let pixel = getPixelInfo(); // Info about the generated pixel
+      // Set some variables to be passed to the createLead Method
+      lead.name = $("#formInfoCurso input[name=name]").val();
+      lead.email = $("#formInfoCurso input[name=email]").val();
+      lead.phone = $("#formInfoCurso input[name=phone]").val();
+      lead.cpf = $("#formInfoCurso input[name=cpf]").val();
+      lead.contact_time = $("#formInfoCurso select[name=contact_time]").val();
+      lead.source = pixel.source;
+      lead.course = Session.get('modalTitle');
+      lead.modality = Session.get('choosenModality');
+      lead.units = Session.get('choosenUnits');
 
-    // Set some variables to be passed to the createLead Method
-    lead.name = $("#formInfoCurso input[name=name]").val();
-    lead.email = $("#formInfoCurso input[name=email]").val();
-    lead.phone = $("#formInfoCurso input[name=phone]").val();
-    lead.source = pixel.source;
-    lead.course = Session.get('modalTitle');
-    lead.modality = Session.get('choosenModality');
-    lead.units = Session.get('choosenUnits');
+      if(confirm(`Seus dados estão corretos?\n\nCurso: ${lead.course}\n--------------\nNome: ${lead.name}\nCPF: ${lead.cpf}\nEmail: ${lead.email}\nTelefone: ${lead.phone}\nHorário de Contato: ${lead.contact_time}`)) {
+        // Call Insert Lead Function
+        Meteor.call('createLead', lead, pixel);
 
-    // Call Insert Lead Function
-    Meteor.call('createLead', lead, pixel);
+        // Opens the Course Information Page and Hides the courseModal
+        window.open($("#formInfoCurso").attr('action'), '_blank');
+        $('.ui.modal').modal('hide');
+      } else {
 
-    // Opens the Course Information Page and Hides the courseModal
-    window.open($("#formInfoCurso").attr('action'), '_blank');
-    $('.ui.modal').modal('hide');
+      }
+
+
+    } else {
+      alert('CPF Inválido');
+    }
+
+
 
   }
 });
@@ -657,4 +670,41 @@ changeUnitName = function(selector) {
       v.textContent = 'Centro Universitário SENAC - '+v.textContent;
     }
   });
+}
+
+validateCPF = function(cpf) {
+  cpf = cpf.replace(/[^\d]+/g,'');
+  if(cpf == '') return false;
+  // Elimina CPFs invalidos conhecidos
+  if (cpf.length != 11 ||
+      cpf == "00000000000" ||
+      cpf == "11111111111" ||
+      cpf == "22222222222" ||
+      cpf == "33333333333" ||
+      cpf == "44444444444" ||
+      cpf == "55555555555" ||
+      cpf == "66666666666" ||
+      cpf == "77777777777" ||
+      cpf == "88888888888" ||
+      cpf == "99999999999")
+          return false;
+  // Valida 1o digito
+  add = 0;
+  for (i=0; i < 9; i ++)
+      add += parseInt(cpf.charAt(i)) * (10 - i);
+      rev = 11 - (add % 11);
+      if (rev == 10 || rev == 11)
+          rev = 0;
+      if (rev != parseInt(cpf.charAt(9)))
+          return false;
+  // Valida 2o digito
+  add = 0;
+  for (i = 0; i < 10; i ++)
+      add += parseInt(cpf.charAt(i)) * (11 - i);
+  rev = 11 - (add % 11);
+  if (rev == 10 || rev == 11)
+      rev = 0;
+  if (rev != parseInt(cpf.charAt(10)))
+      return false;
+  return true;
 }

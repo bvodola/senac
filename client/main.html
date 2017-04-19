@@ -332,10 +332,22 @@
             <input type="text" name="name" placeholder="Seu nome completo" required />
           </div>
           <div class="field">
+            <input type="text" name="cpf" placeholder="Seu CPF" class="cpf-mask" required />
+          </div>
+          <div class="field">
             <input type="email" name="email" placeholder="Seu email" required />
           </div>
           <div class="field">
             <input type="text" name="phone" placeholder="Seu telefone" class="phone-mask" required />
+          </div>
+          <div class="field">
+            <select class="default" name="contact_time" required>
+              <option selected disabled value="">Horário de Contato</option>
+              <option value="Manhã">Manhã</option>
+              <option value="Almoço">Almoço</option>
+              <option value="Tarde">Tarde</option>
+              <option value="Noite">Noite</option>
+            </select>
           </div>
           <button type="submit" id="btnInfoCurso" class="ui positive right labeled icon button">
             Quero saber mais
@@ -350,6 +362,7 @@
 
     <script type="text/javascript">
       $('.phone-mask').mask('(00) 00000-0000');
+      $('.cpf-mask').mask('000.000.000-00');
     </script>
 </template>
 
@@ -422,11 +435,12 @@
   </div>
   <div class="ui divider"></div>
   {{#if currentUser }}
-  <div class="ui four item menu">
+  <div class="ui five item menu">
     <a href="/addCourse" class="item">Cadastrar Curso</a>
     <a href="/editCourses" class="item">Cursos</a>
     <a href="/editCategories" class="item">Categorias</a>
     <a href="/editunits" class="item">Unidades</a>
+    <a href="/leads" class="item">Leads</a>
   </div>
   <div class="ui divider"></div>
     {{ > Template.dynamic template=adminContent }}

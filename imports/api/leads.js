@@ -19,6 +19,8 @@ Meteor.methods({
 		  course: lead.course,
 		  modality: lead.modality,
 		  units: lead.units,
+			cpf: lead.cpf,
+			contact_time: lead.contact_time,
 		  date: new Date().toJSON()
 		}, function(e,leadId) {
 

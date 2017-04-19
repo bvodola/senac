@@ -18,6 +18,21 @@ select {
     -webkit-appearance: none;
 }
 
+select.default {
+    line-height: 30px;
+    height: 40px !important;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    width: 100%;
+    text-indent: 5px;
+    text-overflow: ellipsis !important;
+    padding: 0 40px 0 10px !important;
+    background: rgb(255, 255, 255) url("https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-16.png") no-repeat scroll 98% center !important;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
 select, select:active, select:hover {
     outline: 0 !important;
 }
