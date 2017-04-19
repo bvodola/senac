@@ -148,6 +148,8 @@ Template.courseSearch.events({
     // Set the query object
     let query = new Object();
 
+    query.type = 'Graduação';
+
     // Modality
     if ( $("[name=modality]:checked").val() != 'all' && $("[name=modality]:checked").val() != '') {
       query.modality = $("[name=modality]:checked").val();
@@ -330,6 +332,7 @@ Template.addCourse.events({
       title: $('[name=title]').val(),
       link: $('[name=link]').val(),
       description: $('[name=description]').val(),
+      type: $('[name=type]').val(),
       category: $('[name=category]').val(),
       modality: $('[name=modality]').val(),
       units: $('[name=units]').val()
@@ -481,6 +484,9 @@ Template.categoryRow.events({
 Template.editCourses.helpers({
   courses: function() {
     return Courses.find({}, {sort: {category: 1, modality: -1, title: 1}}).fetch();
+  },
+  gradCourses: function() {
+    return Courses.find({type: 'Graduação'}, {sort: {category: 1, modality: -1, title: 1}}).fetch();
   }
 });
 

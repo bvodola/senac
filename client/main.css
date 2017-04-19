@@ -78,11 +78,12 @@ header {
     }
 
     header .hero-shot {
-
+      max-height: 150px;
+      overflow: hidden;
     }
 
         header .hero-shot img {
-            max-width: 350px !important;
+            margin-top: -9px;
         }
 
     @media(max-width: 768px) {
@@ -110,7 +111,7 @@ header {
             font-family: 'gotham-bold', sans-serif !important;
             font-size: 32px;
             margin-bottom: 5px;
-            margin-top: 80px;
+            margin-top: 20px;
         }
 
         header .badge-header h2 {
@@ -125,6 +126,18 @@ header {
         text-align: right;
         color: #00478b;
     }
+
+@media(min-width: 992px) and (max-width: 1199px) {
+
+    header .badge-header h1 {
+        font-size: 20px;
+        margin-top: 0;
+    }
+
+    header .badge-header h2 {
+        font-size: 16px;
+    }
+}
 
 @media(max-width: 768px) {
     header {
@@ -144,6 +157,8 @@ header {
         font-size: 16px;
     }
 }
+
+
 
 #leadForm .privacy {
     color: rgb(153, 153, 153);

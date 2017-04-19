@@ -17,29 +17,6 @@
           <!-- First Header Row -->
           <!-- **************** -->
 
-          <!-- Hero Shot -->
-          <div class="row">
-            <div class="mobile-logo">
-              <img src="img/logo-senac-70-anos.gif" class="responsive" />
-            </div>
-            <div class="seven wide column hero-shot">
-              <img src="img/arte-senac-2.jpg" class="responsive">
-            </div>
-
-            <!-- Badge and Header -->
-            <div class="badge-header nine wide column">
-              <div class="badge hidden-xs">
-                <img src="img/selo-mec-2.jpg" class="responsive hidden-xs">
-              </div>
-              <h1>FAÇA GRADUAÇÃO NO SENAC.</h1>
-              <h2>CURSOS PRESENCIAIS E A DISTÂNCIA, EM DIVERSAS ÁREAS DO CONHECIMENTO.</h2>
-            </div>
-          </div>
-
-          <!-- ***************** -->
-          <!-- Second Header Row -->
-          <!-- ***************** -->
-
           <div class="row">
             <div class="seven wide column main-logo">
               <img src="img/logo-senac-70-anos.gif" class="responsive hidden-xs">
@@ -47,6 +24,27 @@
             <div class="nine wide column middle aligned content">
             </div>
           </div>
+
+          <!-- ***************** -->
+          <!-- Second Header Row -->
+          <!-- ***************** -->
+
+          <!-- Hero Shot -->
+          <div class="row">
+            <div class="mobile-logo">
+              <img src="img/logo-senac-70-anos.gif" class="responsive" />
+            </div>
+            <div class="hero-shot sixteen wide tablet eight wide computer column">
+              <img src="http://www.sp.senac.br/image/64402.jpg" class="responsive">
+            </div>
+
+            <!-- Header -->
+            <div class="badge-header sixteen wide tablet eight wide computer column">
+              <h1>FAÇA GRADUAÇÃO NO SENAC.</h1>
+              <h2>CURSOS PRESENCIAIS E A DISTÂNCIA, EM DIVERSAS ÁREAS DO CONHECIMENTO.</h2>
+            </div>
+          </div>
+
         </div>
       </div>
     </header>
@@ -424,6 +422,13 @@
   </div>
   <div class="ui divider"></div>
   {{#if currentUser }}
+  <div class="ui four item menu">
+    <a href="/addCourse" class="item">Cadastrar Curso</a>
+    <a href="/editCourses" class="item">Cursos</a>
+    <a href="/editCategories" class="item">Categorias</a>
+    <a href="/editunits" class="item">Unidades</a>
+  </div>
+  <div class="ui divider"></div>
     {{ > Template.dynamic template=adminContent }}
   {{ /if }}
   </div>
@@ -458,6 +463,14 @@
           <div class="field">
             <label>Descrição</label>
             <textarea name="description" id="courseDescription" cols="30" rows="10"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Tipo</label>
+            <select name="type" class="ui dropdown">
+              <option value="Graduação">Graduação</option>
+              <option value="Pós-graduação">Pós-graduação</option>
+            </select>
           </div>
 
           <div class="field">
@@ -547,28 +560,24 @@
 <!-- ************** -->
 <template name="editCategories">
   <h1>Editar Categorias</h1>
+  {{ > addCategory }}
+  <div class="ui divider"></div>
   {{ #each category in categories }}
     {{ > categoryRow category=category }}
   {{ /each}}
 
-  {{ > addCategory }}
+
 </template>
 
 <!-- *********** -->
 <!-- categoryRow -->
 <!-- *********** -->
 <template name="categoryRow">
-  <div class="ui grid">
-    <div class="two wide column">
+  <li class="unit-row">
       <input class="editable" type="text" name="name" value="{{category.name}}">
-    </div>
-    <div class="two wide column">
       <input class="editable" type="text" name="modality" value="{{category.modality}}">
-    </div>
-    <div class="one wide column">
       <a href="#" class="remove-category">&times;</a>
-    </div>
-  </div>
+  </li>
 </template>
 
 <!-- ******* -->
@@ -590,11 +599,14 @@
 
 <template name="editUnits">
   <ul>
+    {{ > addUnit }}
+    <div class="ui divider"></div>
+
     {{ #each unit in units }}
       {{ >unitRow unit=unit }}
     {{ /each }}
 
-    {{ > addUnit }}
+
   </ul>
 </template>
 
@@ -624,7 +636,7 @@
       </tr>
     </thead>
     <tbody>
-      {{ #each course in courses }}
+      {{ #each course in gradCourses }}
         {{ > adminCourseRow course=course }}
       {{ /each }}
     </tbody>
