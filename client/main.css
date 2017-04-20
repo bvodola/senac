@@ -78,7 +78,7 @@ header {
     padding-bottom: 10px;
 }
     header .main-logo img {
-        max-width: 200px !important;
+        max-width: 120px !important;
     }
 
     header .mobile-logo {
@@ -98,7 +98,7 @@ header {
     }
 
         header .hero-shot img {
-            margin-top: -9px;
+            margin: -7px 0;
         }
 
     @media(max-width: 768px) {
