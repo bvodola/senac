@@ -86,6 +86,11 @@ header {
         width: 100%;
     }
 
+      header .mobile-logo img {
+        max-width: 160px !important;  
+      }
+
+
     @media(min-width: 769px) {
         header .mobile-logo {
             display: none;

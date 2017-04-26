@@ -246,35 +246,11 @@ Template.courseSearch.helpers({
   },
 
   'customUnits': function(region) {
-    if(region === 'Capital') {
-      return [
-        { name: 'Santo Amaro' },
-        { name: 'Aclimação' },
-        { name: 'Francisco Matarazzo' },
-        { name: 'Jabaquara' },
-        { name: 'Lapa Faustolo' },
-        { name: 'Lapa Scipião' },
-        { name: 'Lapa Tito' },
-        { name: 'Osasco' },
-        { name: 'Santo André' },
-        { name: 'Tiradentes' }
-      ];
-    }
-    else if (region === 'Interior') {
-      return [
-        { name: 'Águas de São Pedro' },
-        { name: 'Campos do Jordão' },
-        { name: 'Bauru' },
-        { name: 'Campinas' },
-        { name: 'Jundiaí' },
-        { name: 'Piracicaba' },
-        { name: 'Presidente Prudente' },
-        { name: 'Ribeirão Preto' },
-        { name: 'São José do Rio Preto' },
-        { name: 'São José dos Campos' },
-        { name: 'Sorocaba' }
-      ];
-    }
+      let filters = {}
+      if(typeof region != "undefined") {
+        filters = {region: region};
+      }
+      return Units.find(filters, {sort: {name: 1}});
   },
 
   'categories': function() {
