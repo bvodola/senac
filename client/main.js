@@ -15,6 +15,20 @@ import './main.html';
 // Templates
 // =========
 
+Template.main.onRendered(function() {
+  // the Worksheet object gives you a simple interface to a single sheet
+  var Worksheet = require('xlsx-workbook').Worksheet;
+
+  var worksheet = new Worksheet("Hello Spreadsheet");
+
+  // add data using row and column indices on the worksheet object
+  worksheet[0][0] = "Hello";
+  worksheet[0][1] = "Spreadsheet";
+
+  // saving automatically creates a new workbook with the same name
+  var workbook = worksheet.save('test');
+});
+
 // =================
 // leadForm Template
 // =================
@@ -617,9 +631,6 @@ UI.registerHelper('getAllCourses', function(){
 // Client Methods
 // ==============
 
-// ============
-// getPixelInfo
-// ============
 getPixelInfo = function() {
   let pixel = {}; // Info about the generated pixel
   pixel.source = Cookie.get('utm_source'); // The Source of the page traffic

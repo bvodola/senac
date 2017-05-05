@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "json2excel": "^1.2.0",
-    "meteor-node-stubs": "~0.2.0"
+    "meteor-node-stubs": "~0.2.0",
+    "xlsx-workbook": "^1.0.3"
   }
 }
