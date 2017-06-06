@@ -178,11 +178,12 @@ Template.courseSearch.events({
     query.type = 'Graduação';
 
     // Modality
-    if ( $("[name=modality]:checked").val() != 'all' && $("[name=modality]:checked").val() != '') {
-      query.modality = $("[name=modality]:checked").val();
-      Session.set('searchedModality', $("[name=modality]:checked").val());
-    }
+    // if ( $("[name=modality]:checked").val() != 'all' && $("[name=modality]:checked").val() != '') {
+    //   query.modality = $("[name=modality]:checked").val();
+    //   Session.set('searchedModality', $("[name=modality]:checked").val());
+    // }
 
+    query.modality='Presencial';
 
     // Units
     let units = [];
